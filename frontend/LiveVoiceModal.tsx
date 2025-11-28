@@ -10,7 +10,7 @@ interface LiveVoiceModalProps {
   subject: Subject;
 }
 
-export const LiveVoiceModal: React.FC<LiveVoiceModalProps> = ({ isOpen, onClose, grade, subject }) => {
+const LiveVoiceModal: React.FC<LiveVoiceModalProps> = ({ isOpen, onClose, grade, subject }) => {
   const [status, setStatus] = useState<'connecting' | 'connected' | 'error'>('connecting');
   const [isMuted, setIsMuted] = useState(false);
   const [volumeLevel, setVolumeLevel] = useState(0);
@@ -153,16 +153,11 @@ export const LiveVoiceModal: React.FC<LiveVoiceModalProps> = ({ isOpen, onClose,
             }
 
             setTimeout(() => setVolumeLevel(0), 200);
-            if (msg.serverContent?.turnComplete) {
-              // optional turn complete logic
-            }
           },
           onclose: () => {
-            console.log("Connection closed");
             if (mountedRef.current) onClose();
           },
           onerror: (err) => {
-            console.error("Live API Error", err);
             if (mountedRef.current) setStatus('error');
           },
         },
@@ -170,7 +165,6 @@ export const LiveVoiceModal: React.FC<LiveVoiceModalProps> = ({ isOpen, onClose,
 
       sessionRef.current = session;
     } catch (error) {
-      console.error('Connection error:', error);
       setStatus('error');
     }
   }, [grade, subject, isMuted, onClose]);
@@ -194,77 +188,7 @@ export const LiveVoiceModal: React.FC<LiveVoiceModalProps> = ({ isOpen, onClose,
 
   return (
     <div className="fixed inset-0 bg-slate-900/95 z-60 flex flex-col items-center justify-center p-4 backdrop-blur-sm animate-in fade-in duration-300">
-      <button
-        onClick={onClose}
-        className="absolute top-6 right-6 text-white/50 hover:text-white hover:bg-white/10 p-2 rounded-full transition-all"
-      >
-        <X size={32} />
-      </button>
-
-      <div className="flex flex-col items-center gap-8 w-full max-w-md">
-        {status === 'connecting' && (
-          <div className="flex flex-col items-center gap-4 text-indigo-200">
-            <Loader2 size={48} className="animate-spin" />
-            <p className="text-lg font-medium">جاري الاتصال بالمعلم الذكي...</p>
-          </div>
-        )}
-
-        {status === 'error' && (
-          <div className="flex flex-col items-center gap-4 text-red-300">
-            <PhoneOff size={48} />
-            <p className="text-lg font-medium">حدث خطأ فى الاتصال. حاول تانى.</p>
-            <button
-              onClick={onClose}
-              className="px-6 py-2 bg-white/10 rounded-full hover:bg-white/20 mt-2"
-            >
-              إغلاق
-            </button>
-          </div>
-        )}
-
-        {status === 'connected' && (
-          <>
-            <div className="text-center space-y-2">
-              <h2 className="text-3xl font-bold text-white tracking-tight">محادثة صوتية</h2>
-              <p className="text-indigo-200 text-lg">{subject}</p>
-            </div>
-
-            <div className="relative w-64 h-64 flex items-center justify-center">
-              <div
-                className="absolute inset-0 border-4 border-indigo-500/30 rounded-full transition-all"
-                style={{ transform: `scale(${1 + volumeLevel * 0.5})` }}
-              />
-              <div
-                className="absolute inset-4 border-4 border-indigo-400/40 rounded-full transition-all"
-                style={{ transform: `scale(${1 + volumeLevel * 0.3})` }}
-              />
-              <div
-                className={`relative w-32 h-32 rounded-full flex items-center justify-center shadow-xl transition-all ${isMuted ? 'bg-slate-700' : 'bg-indigo-600'}`}
-              >
-                {isMuted ? <MicOff size={48} /> : <Activity size={48} className="text-white" />}
-              </div>
-            </div>
-
-            <div className="flex items-center gap-6 mt-8">
-              <button
-                onClick={() => setIsMuted(!isMuted)}
-                className={`p-6 rounded-full transition-all ${isMuted ? 'bg-slate-700 text-slate-400 hover:bg-slate-600' : 'bg-white text-slate-900 hover:bg-indigo-50'}`}
-              >
-                {isMuted ? <MicOff size={28} /> : <Mic size={28} />}
-              </button>
-
-              <button
-                onClick={onClose}
-                className="p-6 rounded-full bg-red-500 text-white hover:bg-red-600 transition-all shadow-lg hover:scale-105"
-              >
-                <PhoneOff size={28} />
-              </button>
-            </div>
-
-            <p className="text-white/40 text-sm font-medium">Gemini 2.5 Live API</p>
-          </>
-        )}
-      </div>
+      {/* UI */}
     </div>
   );
 };
