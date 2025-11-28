@@ -1,4 +1,4 @@
-import { GradeLevel, Subject } from '../types';
+import { GradeLevel, Subject } from "./types";
 
 export const CURRICULUM: Record<string, Record<string, string[]>> = {
   [GradeLevel.GRADE_10]: {
