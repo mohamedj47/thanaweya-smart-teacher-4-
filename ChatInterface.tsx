@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { GradeLevel, Subject, Message, Sender, Attachment } from '../types';
 import { generateStreamResponse } from '../services/geminiService';
 import { MessageBubble } from './MessageBubble';
-import { LiveVoiceModal } from './LiveVoiceModal';
+import LiveVoiceModal from "./LiveVoiceModal";
 import { Send, Sparkles, ChevronRight, HelpCircle, FileText, Lightbulb, Bot, List, Printer, Mic, Camera, Paperclip, X, Image as ImageIcon, AudioLines, StopCircle, BrainCircuit, Globe } from 'lucide-react';
 
 interface ChatInterfaceProps {
