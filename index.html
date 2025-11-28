@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
   <head>
@@ -16,12 +15,10 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
-      /* Override Tailwind default sans */
       .font-sans {
         font-family: 'Cairo', sans-serif;
       }
-      
-      /* Custom scrollbar for chat */
+
       .scrollbar-hide::-webkit-scrollbar {
           display: none;
       }
@@ -47,7 +44,7 @@
       }
       .markdown-body p {
         margin-bottom: 1rem;
-        line-height: 2.2; /* Increased for Arabic readability */
+        line-height: 2.2;
         font-size: 1.05em;
       }
       .markdown-body li {
@@ -64,13 +61,12 @@
       }
       .typing-dot:nth-child(1) { animation-delay: -0.32s; }
       .typing-dot:nth-child(2) { animation-delay: -0.16s; }
-      
+
       @keyframes typing {
         0%, 80%, 100% { transform: scale(0); }
         40% { transform: scale(1); }
       }
 
-      /* Custom Pop In Animation */
       @keyframes popIn {
         0% { opacity: 0; transform: scale(0.95) translateY(10px); }
         100% { opacity: 1; transform: scale(1) translateY(0); }
@@ -79,14 +75,11 @@
         animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       }
 
-      /* --- FORCE PRINT STYLES --- */
       @media print {
         @page {
           margin: 1.5cm;
           size: A4;
         }
-        
-        /* 1. Reset Height Constraints */
         html, body, #root {
           height: auto !important;
           min-height: 0 !important;
@@ -95,17 +88,14 @@
           display: block !important;
         }
 
-        /* 2. Hide Interface Elements */
         .no-print, 
-        header button, /* Hide back button/change grade in header */
+        header button,
         .input-area, 
         .floating-tools, 
         button {
           display: none !important;
         }
 
-        /* 3. Unlock the Chat Container */
-        /* This is crucial: we must override the 'flex' and 'overflow' of the chat app */
         .chat-container {
           display: block !important;
           height: auto !important;
@@ -117,20 +107,18 @@
           margin: 0 !important;
         }
 
-        /* 4. Style Messages for Paper */
         .markdown-body {
           color: black !important;
           background-color: white !important;
           border: 1px solid #eee !important;
           box-shadow: none !important;
-          page-break-inside: avoid !important; /* Prevent cutting message in half */
+          page-break-inside: avoid !important;
           margin-bottom: 1cm !important;
           padding: 0 !important;
           font-size: 12pt !important;
           width: 100% !important;
         }
-        
-        /* Make user messages look like questions */
+
         .user-message-bubble {
           border: none !important;
           background: #f0f0f0 !important;
@@ -138,7 +126,6 @@
           font-weight: bold !important;
         }
 
-        /* Diagrams */
         code {
           border: 1px solid #333 !important;
           color: black !important;
@@ -147,25 +134,32 @@
         }
       }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
-    "react-markdown": "https://aistudiocdn.com/react-markdown@^10.1.0",
-    "remark-gfm": "https://aistudiocdn.com/remark-gfm@^4.0.1",
-    "recharts": "https://aistudiocdn.com/recharts@^3.5.0"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
-</head>
+
+    <script type="importmap">
+    {
+      "imports": {
+        "react/": "https://aistudiocdn.com/react@^19.2.0/",
+        "react": "https://aistudiocdn.com/react@^19.2.0",
+        "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+        "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+        "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+        "react-markdown": "https://aistudiocdn.com/react-markdown@^10.1.0",
+        "remark-gfm": "https://aistudiocdn.com/remark-gfm@^4.0.1",
+        "recharts": "https://aistudiocdn.com/recharts@^3.5.0"
+      }
+    }
+    </script>
+
+    <link rel="stylesheet" href="/index.css">
+  </head>
+
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/index.tsx"></script>
-  <script type="module" src="/index.tsx"></script>
-</body>
+
+    <!-- ⛔ تم حذف السطر الغلط -->
+    <!-- <script type="module" src="/src/index.tsx"></script> -->
+
+    <!-- ✅ السطر الصحيح الوحيد -->
+    <script type="module" src="/index.tsx"></script>
+  </body>
 </html>
