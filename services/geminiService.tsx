@@ -1,6 +1,6 @@
 import { GoogleGenAI, Content, Modality } from "@google/genai";
 import { Message, Sender, GradeLevel, Subject, Attachment } from "../types";
-import { getCurriculumFor } from "../data/curriculum";
+import { getCurriculumFor } from "../curriculum"; // ← التعديل الصحيح هنا فقط
 
 const SYSTEM_INSTRUCTION = `
 أنت نظام تعليم ذكي متخصص لطلاب الثانوية العامة المصرية (الصفوف: الأول، الثاني، والثالث).
@@ -190,3 +190,4 @@ export const streamSpeech = async (
     console.error("TTS Stream Error:", error);
   }
 };
+
