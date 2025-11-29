@@ -298,3 +298,4 @@ export const LiveVoiceModal: React.FC<LiveVoiceModalProps> = ({ isOpen, onClose,
     </div>
   );
 };
+export default LiveVoiceModal;
